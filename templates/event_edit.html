@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Edit Event</h4>
+                  <p class="card-category">Edit record within well history</p>
+                </div>
+                <div class="card-body">
+                  <form method="POST", action="">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Date</label>
+                          {% render_field form.date class="form-control" placeholder="yyyy-mm-dd" %}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Category</label>
+                           {% render_field form.category class="form-control"  %}
+                       </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Event</label>
+                          {% render_field form.event class="form-control"  %}
+                      </div>
+                      </div>
+                    </div>
+                    <input type="submit" value="Add"  class="btn btn-primary pull-right">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+<!--           <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Well History</h4>
+                  <p class="card-category"> Simple Events History</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Event</th>
+                        <th>Actions</th>
+                      </thead>
+                      <tbody>
+                        {% for event in events %}
+                        <tr>
+                          <td>{{event.id}}</td>
+                          <td>{{event.date}}</td>
+                          <td>{{event.category}}</td>
+                          <td>{{event.event}}</td>
+                          <td class="text-primary">
+                            <a href="{% url 'tracker:delete_event' event.id %}">   
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </a>
+                           
+                              <button type="button" class="btn btn-warning">Edit</button>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->             
+          </div>
+
+{% endblock %}
