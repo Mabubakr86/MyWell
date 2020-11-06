@@ -11,6 +11,7 @@ class Field(models.Model):
 class Well(models.Model):
     name = models.CharField(max_length=20, unique=True)
     field = models.ForeignKey(to=Field, on_delete=models.CASCADE)
+    info = models.CharField(max_length=500, default='')
     slug = models.SlugField(null=True, blank=True)
 
     def save(self,*args,**kwargs):

@@ -1,41 +1,38 @@
 {% extends 'base.html' %}
+{% block title %} | Add Well{% endblock title %}
 {% block content %}
 {% load widget_tweaks %}
-
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Add Well</h4>
+        <p class="card-category">Add well to database</p>
+      </div>
+      <div class="card-body">
+        <form method="POST", action="">
+          {% csrf_token %}
           <div class="row">
             <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Add Well</h4>
-                  <p class="card-category">Add well to database</p>
-                </div>
-                <div class="card-body">
-                  <form method="POST", action="">
-                    {% csrf_token %}
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Field</label>
-                          {% render_field form.field class="form-control" %}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Well Name</label>
-                          {% render_field form.name class="form-control"  %}
-                      </div>
-                      </div>
-                    </div>
-                      <input type="submit" value="Add"  class="btn btn-primary pull-right">                      
-                   
-
-                </form>
-                </div>
+              <div class="form-group">
+                <label class="bmd-label-floating">Field</label>
+                {% render_field form.field class="form-control" %}
               </div>
             </div>
-          </div>           
           </div>
-
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Well Name</label>
+                {% render_field form.name class="form-control"  %}
+              </div>
+            </div>
+          </div>
+          <input type="submit" value="Add"  class="btn btn-primary pull-right">    
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 {% endblock %}

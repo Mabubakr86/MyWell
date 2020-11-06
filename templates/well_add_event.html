@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
-{% block title %} | Add Event{% endblock title %}
+{% load crispy_forms_tags %}
+{% block title %} | {{well}} {% endblock title %}
 {% block content %}
 {% load widget_tweaks %}
+{% include 'base_well.html' %}
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title">Edit Event</h4>
-        <p class="card-category">Edit record within well history</p>
+        <h4 class="card-title">Add Event</h4>
+        <p class="card-category">Add record to well history</p>
       </div>
       <div class="card-body">
         <form method="POST", action="">
@@ -39,6 +41,5 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 {% endblock %}

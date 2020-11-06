@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} | {{well}} {% endblock title %}
+{% block content %}
+{% load widget_tweaks %}
+
+{% include 'base_well.html' %}
+
+    <div class="card card-profile">
+      <div class="card-body">
+        <h4 class="card-category text-gray" style="font-style: bold;">Well Info</h4>
+        <p class="card-description">
+          {{well.info}}
+        </p>
+        <a href="javascript:;" class="btn btn-primary btn-round">Update info</a>
+      </div>
+    </div>
+{% endblock %}`

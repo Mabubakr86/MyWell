@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} | {{well}} {% endblock title %}
+{% block content %}
+{% load widget_tweaks %}
+{% include 'base_well.html' %}
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Add Event</h4>
+        <p class="card-category">Add record to well history</p>
+      </div>
+      <div class="card-body">
+        <form method="POST", action="">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Date</label>
+                {% render_field form.date class="form-control" placeholder="yyyy-mm-dd" %}
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Category</label>
+                {% render_field form.category class="form-control"  %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Event</label>
+                {% render_field form.event class="form-control"  %}
+              </div>
+            </div>
+          </div>
+          <input type="submit" value="Add"  class="btn btn-primary pull-right">
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title ">Well History</h4>
+        <p class="card-category"> Simple Events History</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>Date</th>
+              <th>Category</th>
+              <th>Event</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              {% for event in events %}
+                <tr>
+                  <td>{{event.date}}</td>
+                  <td>{{event.category}}</td>
+                  <td>{{event.event}}</td>
+                  <td class="text-primary">
+                    <a href="{% url 'tracker:delete_event' event.id %}">
+                      <button type="button" class="btn btn-danger">Delete</button>
+                    </a>
+                    <a href="{% url 'tracker:edit_event' event.id %}">
+                      <button type="button" class="btn btn-warning">Edit</button>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-10">
+</div>
+<div class="col-md-2">
+  <a href="{% url 'tracker:add_event' well.id %}"><button type="button" class="btn btn-primary">Add Event</button>
+</a>
+</div>
+{% endblock %}

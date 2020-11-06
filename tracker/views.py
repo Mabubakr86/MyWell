@@ -14,29 +14,43 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
+def well_info(request,id):
+    well = Well.objects.get(id=id)
+    return render(request, 'well_info.html', {'well':well})
 
-def well(request,id):
+
+def well_history(request,id):
     well = Well.objects.get(id=id)
     events = Event.objects.filter(well=well)
-
-    if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            event_form = form.save(commit=False)
-            event_form.well = well
-            event_form.save()
-            return redirect(reverse('tracker:well', kwargs={'id':well.id}))
-
-    else:
-        form = EventForm()
-
-    return render(request, 'well.html', {'events':events,'form':form})
+    context = {
+            'events':events,
+            'well':well
+    }
+    return render(request, 'well_history.html', context=context)
 
 def delete_event(request, id):
     event = Event.objects.get(id=id)
     well = event.well
     event.delete()
     return redirect(reverse('tracker:well' ,kwargs={'id': event.well.id}))
+
+def add_event(request,id):
+    well = Well.objects.get(id=id)
+    events = Event.objects.filter(well=well)    
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event_form = form.save(commit=False)
+            event_form.well = well
+            event_form.save()
+            return redirect(reverse('tracker:well_history', kwargs={'id':well.id}))
+    else:
+        form = EventForm()
+    context = {
+            'form':form,
+            'well':well
+    }
+    return render(request, 'well_add_event.html', context=context)
 
 
 def edit_event(request,id):
