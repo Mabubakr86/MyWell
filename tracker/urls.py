@@ -12,5 +12,6 @@ urlpatterns = [
         path('well/events/edit/<int:id>', edit_event, name='edit_event'),
         path('well/add', add_well, name='add_well'),
         path('field/add', add_field, name='add_field'),
+        path('map', show_map, name='map'),
 
 ]
