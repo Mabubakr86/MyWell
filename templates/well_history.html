@@ -4,44 +4,35 @@
 {% block content %}
 {% load widget_tweaks %}
 {% include 'base_well.html' %}
-<!-- <div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header card-header-primary">
-        <h4 class="card-title">Add Event</h4>
-        <p class="card-category">Add record to well history</p>
-      </div>
-      <div class="card-body">
-        <form method="POST", action="">
-          {% csrf_token %}
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="bmd-label-floating">Date</label>
-                {% render_field form.date class="form-control" placeholder="yyyy-mm-dd" %}
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="bmd-label-floating">Category</label>
-                {% render_field form.category class="form-control"  %}
-              </div>
-            </div>
+<div class="row">
+  <div class="col-md-10">
+  </div>
+  <div class="col-md-2">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    LAst Wo Info
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">last Wo Info</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="bmd-label-floating">Event</label>
-                {% render_field form.event class="form-control"  %}
-              </div>
-            </div>
+          <div class="modal-body">
+            <ul>
+              <li ><span style="font-weight:bold;">Date:</span> {{last_wo.date}}</li>
+              <li ><span style="font-weight:bold;">Operations::</span> {{last_wo.event}}</li>
+            </ul>
           </div>
-          <input type="submit" value="Add"  class="btn btn-primary pull-right">
-        </form>
+        </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -81,12 +72,12 @@
     </div>
   </div>
 </div>
-</div>
 <div class="row">
-<div class="col-md-10">
-</div>
-<div class="col-md-2">
-  <a href="{% url 'tracker:add_event' well.id %}"><button type="button" class="btn btn-primary">Add Event</button>
-</a>
+  <div class="col-md-10">
+  </div>
+  <div class="col-md-2">
+    <a href="{% url 'tracker:add_event' well.id %}"><button type="button" class="btn btn-primary">Add Event</button>
+    </a>
+  </div>
 </div>
 {% endblock %}

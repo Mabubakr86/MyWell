@@ -22,9 +22,12 @@ def well_info(request,id):
 def well_history(request,id):
     well = Well.objects.get(id=id)
     events = Event.objects.filter(well=well)
+    last_wo = events.filter(category='Workover').last()
     context = {
             'events':events,
-            'well':well
+            'well':well,
+            'last_wo': last_wo,
+
     }
     return render(request, 'well_history.html', context=context)
 
@@ -42,7 +45,7 @@ def add_event(request,id):
         form = EventForm()
     context = {
             'form':form,
-            'well':well
+            'well':well,
     }
     return render(request, 'well_add_event.html', context=context)
 
@@ -98,8 +101,6 @@ def add_field(request):
 
 
 def show_map(request):
-    # loc = (40.730610, -73.935242)
-    loc = (37.7510, -97.8220)
     loc_2 = (30.033333, 31.233334)
     my_map = folium.Map(width=300, height=400, location=loc_2)
     my_map = my_map._repr_html_()
